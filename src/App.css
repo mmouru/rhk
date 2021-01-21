@@ -1,38 +1,139 @@
-.App {
-  text-align: center;
+body {
+  background-color: #000;
+  margin-top: 20px;
+  font-family: 'Roboto', sans-serif;
+}
+.rainbow {
+  background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+  background-image: gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+  color:transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: animatedBackground 5s linear infinite;
+    -moz-animation: animatedBackground 5s linear infinite;
+    -webkit-animation: animatedBackground 5s linear infinite;
+    -ms-animation: animatedBackground 5s linear infinite;
+    -o-animation: animatedBackground 5s linear infinite;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.sparkle {
+	font-family:impact;
+	 -webkit-text-fill-color: transparent;
+	 background: -webkit-linear-gradient(transparent, transparent),
+	             url(http://www.myspacehippo.com/files/glitterbacks/bg345.gif) repeat;
+	 background: -o-linear-gradient(transparent, transparent);
+	 -webkit-background-clip: text;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.scrolling {
+  color : blue;
+	animation: scrolling 3s linear infinite;
+    -moz-animation: scrolling 3s linear infinite;
+    -webkit-animation: scrolling 3s linear infinite;
+    -ms-animation: scrolling 3s linear infinite;
+    -o-animation: scrolling 3s linear infinite;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.scrolling-container {
+	overflow : hidden;
+	height: 55px;
+}
+
+/* Animation rainbow background */
+@keyframes animatedBackground {
+    0% { background-position: 0; }
+    100% { background-position: 500px; }
+}
+@-moz-keyframes animatedBackground {
+    0% { background-position: 0; }
+    100% { background-position: 500px; }
+}
+@-webkit-keyframes animatedBackground {
+    0% { background-position: 0; }
+    100% { background-position: 500px; }
+}
+@-ms-keyframes animatedBackground {
+    0% { background-position: 0; }
+    100% { background-position: 500px; }
+}
+@-o-keyframes animatedBackground {
+    0% { background-position: 0; }
+    100% { background-position: 500px; }
+}
+
+/* Y scroll animation */
+@keyframes scrolling {
+	0% {transform: translateY(-150%)}
+	100% {transform: translateY(100%)}
+}
+@-moz-keyframes scrolling {
+	0% {transform: translateY(-150%)}
+	100% {transform: translateY(100%)}
+}
+@-webkit-keyframes scrolling {
+	0% {transform: translateY(-150%)}
+	100% {transform: translateY(100%)}
+}
+@-ms-keyframes scrolling {
+	0% {transform: translateY(-150%)}
+	100% {transform: translateY(100%)}
+}
+@-o-keyframes scrolling {
+	0% {transform: translateY(-150%)}
+	100% {transform: translateY(100%)}
+} 
+
+#stage {
+  margin: 1em auto;
+  -webkit-perspective: 1200px;
+  -moz-perspective: 1200px;
+  -ms-perspective: 1200px;
+  perspective: 1200px;
+}
+
+.image-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+#spinner {
+  -webkit-animation-name: spinner;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-duration: 6s;
+
+  animation-name: spinner;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 6s;
+
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
 }
 
-@keyframes App-logo-spin {
+#spinner:hover {
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+}
+
+ /* WebKit and Opera browsers */
+ @-webkit-keyframes spinner {
+  from { -webkit-transform: rotateY(0deg);    }
+  to   { -webkit-transform: rotateY(-360deg); }
+}
+
+/* all other browsers */
+@keyframes spinner {
   from {
-    transform: rotate(0deg);
+    -moz-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    transform: rotateY(0deg);
   }
   to {
-    transform: rotate(360deg);
+    -moz-transform: rotateY(-360deg);
+    -ms-transform: rotateY(-360deg);
+    transform: rotateY(-360deg);
   }
 }
