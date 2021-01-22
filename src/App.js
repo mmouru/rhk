@@ -7,7 +7,9 @@ import Col from 'react-bootstrap/Col'
 import { Table } from 'react-bootstrap' 
 import rhk from './rhk.png'
 import members from './members.gif'
+import hof from './hof.gif'
 import serebryanka from './sere0.png'
+import discord from './discord.png'
 
 
 function App() {
@@ -70,6 +72,16 @@ function App() {
     const percentage = (wins / matsit.length * 100).toFixed(3)
     return `${percentage}`
   }
+
+  const determinateHomeland = (vastustaja) => {
+    if (vastustaja === "los."){
+      return "nl"
+    }
+    else if (vastustaja === "eC *" || vastustaja === "(t)"){
+    return "se"
+    }
+    else { return "fi" }
+  }
   
   return (
     <div>
@@ -88,11 +100,12 @@ function App() {
           <Table className="matsitTable" style={{textAlign: "center"}}>
             <thead>
               <tr style={{color: "white"}}>
-                <th style={{borderTop: 0, borderColor: "black"}}>#</th>
-                <th style={{borderTop: 0, borderColor: "black"}}>style</th>
-                <th style={{borderTop: 0, borderColor: "black"}}>tag</th>
-                <th style={{borderTop: 0, borderColor: "black"}}>score</th>
-                <th style={{borderTop: 0, borderColor: "black"}}>date</th>
+                <th style={{borderTop: 0, borderColor: "black", width: 150}}>#</th>
+                <th style={{borderTop: 0, borderColor: "black", width: 150}}>style</th>
+                <th style={{borderTop: 0, borderColor: "black", width: 20}}></th>
+                <th style={{borderTop: 0, borderColor: "black", width: 150, paddingLeft: 0}}>tag</th>
+                <th style={{borderTop: 0, borderColor: "black", width: 150}}>score</th>
+                <th style={{borderTop: 0, borderColor: "black", width: 150}}>date</th>
               </tr>
               </thead>
               <tbody>
@@ -104,13 +117,16 @@ function App() {
                       <td style={{borderColor: "black"}}>
                         {match.style}
                       </td>
-                      <td style={{borderColor: "black"}}>
+                      <td style={{borderColor: "black", paddingRight: 0}}>
+                        <img src={`https://www.countryflags.io/${determinateHomeland(match.opponent)}/shiny/64.png`} style={{width:20, height: 20}}/>
+                      </td>
+                      <td style={{borderColor: "black", paddingLeft: 0, width:70}}>
                         {match.opponent}
                       </td>
                       <td style={{borderColor: "black", color: getColor(match.tilanne)}}>
                         {match.tilanne}
                       </td>
-                      <td style={{borderColor: "black"}}>
+                      <td style={{borderColor: "black", width: "150"}}>
                         {`${(new Date(match.date)).getDate()}.${(new Date(match.date)).getMonth() + 1}.${(new Date(match.date)).getFullYear()}`}
                       </td>
                     </tr>
@@ -118,7 +134,7 @@ function App() {
               </tbody>
           </Table>
        </Col>
-       <Col style={{textAlign: "center"}}><div><img src={rhk}></img></div>
+       <Col style={{textAlign: "center"}}><div><a href="https://discord.gg/vPxH6rHU"><img src={rhk}></img></a></div>
        <div id="picturediv">
          <div className="image-container" style={{marginTop: 30}}>
           <img src={members}/>
@@ -134,6 +150,16 @@ function App() {
                         )}
                     </tbody>
                   </table>
+         </div>
+         <img src={hof} style={{marginTop: 30}}/>
+         <div>
+           <table id="pelaajattable" style={{width: "100%", marginTop: 30, color: "white"}}>
+             <tr style={{textAlign: "center", verticalAlign: "middle", width: "100%", marginTop: "10px"}}>
+               <td>
+                 {"janneP"}
+               </td>
+             </tr>
+           </table>
          </div>
          <div id="stage" style={{marginTop:60}}><img id="spinner" src={serebryanka}></img></div></Col>
     </Row>
