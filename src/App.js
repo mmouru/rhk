@@ -4,15 +4,20 @@ import axios from 'axios'
 import  Container  from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { Table } from 'react-bootstrap'
-import serebryanka from './sere.png'
+import { Table } from 'react-bootstrap' 
 import rhk from './rhk.png'
 import members from './members.gif'
+import serebryanka from './sere0.png'
+
 
 function App() {
   const [matches, setMatches] = useState([])
 
-  const pelaajat = ["penaa", "mazze", "raksuu", "nykzi", "kallu", "tuomasK"]
+  const pelaajat = ["penaa", "mazze", "raksuu", "nykzi", "kallu", "tuomasK (trilu)"]
+
+  const [kuva, setKuva] = useState(serebryanka)
+
+  const [number, setNumber] = useState(0)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,6 +28,24 @@ function App() {
     }
     fetchData();
   }, []);
+
+  const totalWins = (mathces) => {
+    let voitot = 0
+    matches.forEach(match => {
+      const score = match.tilanne.split("-")
+        voitot += parseInt(score[0])
+    })
+    return voitot
+  }
+
+  const totalLoses = (mathces) => {
+    let häviöt = 0
+    matches.forEach(match => {
+      const score = match.tilanne.split("-")
+        häviöt += parseInt(score[1])
+    })
+    return häviöt
+  }
   
   const getColor = (tilanne) => {
     const score = tilanne.split("-")
@@ -47,46 +70,48 @@ function App() {
     const percentage = (wins / matsit.length * 100).toFixed(3)
     return `${percentage}`
   }
-
-
+  
   return (
     <div>
     <Container fluid style={{backgroundColor: "black"}}>
       <Row>
-       <Col style={{marginLeft: 100}}>
-       <p className="html-rainbow-text" style={{textAlign: "center"}}>
-       <h1 className="rainbow">total matches: {matches.length}</h1>
+       <Col style={{marginLeft: 100, textAlign: "center"}}>
+       <p className="html-rainbow-text">
+       <h1 className="rainbow">clanwars: {matches.length}</h1>
+       </p>
+       <p style={{color: "white"}}>
+         total rounds <span style={{color: "green"}}>{totalWins()}</span> - <span style={{color: "red"}}>{totalLoses()}</span>
        </p>
        <h3 style={{color: "green", textAlign: "center"}} colSpan={1}>
        <b>win %: &nbsp;{winPercent(matches)} </b>
        </h3>
-          <Table style={{textAlign: "center"}}>
+          <Table className="matsitTable" style={{textAlign: "center"}}>
             <thead>
               <tr style={{color: "white"}}>
-                <th style={{borderTop: 0, borderBottom: 0}}>#</th>
-                <th style={{borderTop: 0, borderBottom: 0}}>style</th>
-                <th style={{borderTop: 0, borderBottom: 0}}>opponent</th>
-                <th style={{borderTop: 0, borderBottom: 0}}>score</th>
-                <th style={{borderTop: 0, borderBottom: 0}}>date</th>
+                <th style={{borderTop: 0, borderColor: "black"}}>#</th>
+                <th style={{borderTop: 0, borderColor: "black"}}>style</th>
+                <th style={{borderTop: 0, borderColor: "black"}}>tag</th>
+                <th style={{borderTop: 0, borderColor: "black"}}>score</th>
+                <th style={{borderTop: 0, borderColor: "black"}}>date</th>
               </tr>
               </thead>
               <tbody>
-                {matches.map((match, i) => 
-                    <tr key={i} style={{color: getColor(match.tilanne)}}>
-                      <td style={{borderTop: 0}}>
-                        {i + 1}
+                {matches.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).map((match, i) => 
+                    <tr key={i} style={{color: "white"}}>
+                      <td style={{borderColor: "black"}}>
+                        {matches.length - i}
                       </td>
-                      <td style={{borderTop: 0}}>
+                      <td style={{borderColor: "black"}}>
                         {match.style}
                       </td>
-                      <td style={{borderTop: 0}}>
+                      <td style={{borderColor: "black"}}>
                         {match.opponent}
                       </td>
-                      <td style={{borderTop: 0}}>
+                      <td style={{borderColor: "black", color: getColor(match.tilanne)}}>
                         {match.tilanne}
                       </td>
-                      <td style={{borderTop: 0}}>
-                        {`${(new Date(match.date)).getDate()}/${(new Date(match.date)).getMonth() + 1}/${(new Date(match.date)).getFullYear()}`}
+                      <td style={{borderColor: "black"}}>
+                        {`${(new Date(match.date)).getDate()}.${(new Date(match.date)).getMonth() + 1}.${(new Date(match.date)).getFullYear()}`}
                       </td>
                     </tr>
                   )}

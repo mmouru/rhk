@@ -91,6 +91,10 @@ body {
   perspective: 1200px;
 }
 
+.matsitTable {
+  background-color: rgba(66, 66, 66, 0.2);
+}
+
 .image-container {
   display: flex;
   justify-content: center;
@@ -113,10 +117,10 @@ body {
   transform-style: preserve-3d;
 }
 
-#spinner:hover {
+/*#spinner:hover {
   -webkit-animation-play-state: paused;
   animation-play-state: paused;
-}
+}*/
 
  /* WebKit and Opera browsers */
  @-webkit-keyframes spinner {
