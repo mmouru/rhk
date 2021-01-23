@@ -87,7 +87,7 @@ function App() {
     <div>
     <Container fluid style={{backgroundColor: "black"}}>
       <Row>
-       <Col style={{marginLeft: 100, textAlign: "center"}}>
+       <Col style={{marginLeft: 100, textAlign: "center", paddingRight: 0}}>
        <p className="html-rainbow-text">
        <h1 className="rainbow">clanwars: {matches.length}</h1>
        </p>
@@ -97,14 +97,14 @@ function App() {
        <h3 style={{color: "green", textAlign: "center"}} colSpan={1}>
        <b>win %: &nbsp;{winPercent(matches)} </b>
        </h3>
-          <Table className="matsitTable" style={{textAlign: "center"}}>
+          <Table className="center" style={{textAlign: "center", width: 500}}>
             <thead>
               <tr style={{color: "white"}}>
-                <th style={{borderTop: 0, borderColor: "black", width: 150}}>#</th>
-                <th style={{borderTop: 0, borderColor: "black", width: 150}}>style</th>
+                <th style={{borderTop: 0, borderColor: "black", width: 50}}>#</th>
+                <th style={{borderTop: 0, borderColor: "black", width: 80}}>style</th>
                 <th style={{borderTop: 0, borderColor: "black", width: 20}}></th>
-                <th style={{borderTop: 0, borderColor: "black", width: 150, paddingLeft: 0}}>tag</th>
-                <th style={{borderTop: 0, borderColor: "black", width: 150}}>score</th>
+                <th style={{borderTop: 0, borderColor: "black", width: 80, paddingLeft: 0}}>tag</th>
+                <th style={{borderTop: 0, borderColor: "black", width: 50}}>score</th>
                 <th style={{borderTop: 0, borderColor: "black", width: 150}}>date</th>
               </tr>
               </thead>

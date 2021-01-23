@@ -91,6 +91,17 @@ body {
   perspective: 1200px;
 }
 
+table.center {
+  margin-left:auto; 
+  margin-right:auto;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(66, 66, 66, 0.2);
+}
+
 .matsitTable {
   background-color: rgba(66, 66, 66, 0.2);
 }
