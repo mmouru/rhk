@@ -1,25 +1,36 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css';
 import axios from 'axios'
 import  Container  from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { Table } from 'react-bootstrap' 
-import rhk from './rhk.png'
+import rhk from './rhk1.png'
 import members from './members.gif'
 import hof from './hof.gif'
 import serebryanka from './sere0.png'
-import discord from './discord.png'
+import serebryanka1 from './sere1.png'
+import serebryanka2 from './sere3.png'
 
 
 function App() {
   const [matches, setMatches] = useState([])
 
-  const pelaajat = ["penaa", "mazze", "raksuu", "nykzi", "kallu", "tuomasK (trilu)"]
+  const pelaajat = ["penaa", "mazze", "raksuu", "nykzi", "kallu", "tuomasK"]
+
+  const kuvat = []
+
+  kuvat[0] = serebryanka
+  kuvat[1] = serebryanka1
+  kuvat[2] = serebryanka2
+
+  console.log(kuvat)
 
   const [kuva, setKuva] = useState(serebryanka)
 
-  const [number, setNumber] = useState(0)
+  const [seconds, setSeconds] = useState(1);
+
+  const [number, setNumber] = useState(1500)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,6 +59,13 @@ function App() {
     })
     return häviöt
   }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSeconds(seconds => seconds + 1);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
   
   const getColor = (tilanne) => {
     const score = tilanne.split("-")
@@ -82,12 +100,16 @@ function App() {
     }
     else { return "fi" }
   }
+
+ const kuvaKaruselli = (seconds) => {
+   return kuvat[Math.floor(Math.random() * 3)]
+ }
   
   return (
-    <div>
-    <Container fluid style={{backgroundColor: "black"}}>
-      <Row>
-       <Col style={{marginLeft: 100, textAlign: "center", paddingRight: 0}}>
+    <div style={{backgroundColor : "black"}}>
+    <Container fluid className="kuvakki">
+      <Row style={{paddingTop: 20, paddingBottom: 20}}>
+       <Col style={{marginLeft: 300, textAlign: "center", paddingRight: 0}}>
        <p className="html-rainbow-text">
        <h1 className="rainbow">clanwars: {matches.length}</h1>
        </p>
@@ -95,7 +117,7 @@ function App() {
          total rounds <span style={{color: "green"}}>{totalWins()}</span> - <span style={{color: "red"}}>{totalLoses()}</span>
        </p>
        <h3 style={{color: "green", textAlign: "center"}} colSpan={1}>
-       <b>win %: &nbsp;{winPercent(matches)} </b>
+       <b>win %: &nbsp;{winPercent(matches)}</b>
        </h3>
           <Table className="center" style={{textAlign: "center", width: 500}}>
             <thead>
@@ -134,7 +156,7 @@ function App() {
               </tbody>
           </Table>
        </Col>
-       <Col style={{textAlign: "center"}}><div><a href="https://discord.gg/vPxH6rHU"><img src={rhk}></img></a></div>
+       <Col style={{textAlign: "center", marginRight: 300}}><div><a href="https://discord.gg/vPxH6rHU"><img src={rhk}></img></a></div>
        <div id="picturediv">
          <div className="image-container" style={{marginTop: 30}}>
           <img src={members}/>
@@ -143,7 +165,7 @@ function App() {
                     <tbody style={{width: "100%"}}>
                       {pelaajat.map((pelaaja, i) => 
                           <tr key={i} style={{textAlign: "center", verticalAlign: "middle", width: "100%", marginTop: "10px"}}>
-                            <td style={{textAlign: "center", verticalAlign: "middle", width: "100%"}}>
+                            <td  className="shadow2" style={{textAlign: "center", verticalAlign: "middle", width: "100%"}}>
                               {pelaaja}
                             </td>
                           </tr>
@@ -155,13 +177,13 @@ function App() {
          <div>
            <table id="pelaajattable" style={{width: "100%", marginTop: 30, color: "white"}}>
              <tr style={{textAlign: "center", verticalAlign: "middle", width: "100%", marginTop: "10px"}}>
-               <td>
+               <td className="shadow2">
                  {"janneP"}
                </td>
              </tr>
            </table>
          </div>
-         <div id="stage" style={{marginTop:60}}><img id="spinner" src={serebryanka}></img></div></Col>
+         <div id="stage" style={{marginTop:60}}><img id="spinner" src={kuvaKaruselli(seconds)}></img></div></Col>
     </Row>
     </Container>
     </div>

@@ -1,6 +1,16 @@
+.kuvakki { 
+  background: url('taustakuva.png') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+html {
+  color: black;
+}
+
 body {
-  background-color: #000;
-  margin-top: 20px;
   font-family: 'Roboto', sans-serif;
 }
 .rainbow {
@@ -99,11 +109,21 @@ table.center {
 .center {
   margin-left: auto;
   margin-right: auto;
-  background-color: rgba(66, 66, 66, 0.2);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .matsitTable {
   background-color: rgba(66, 66, 66, 0.2);
+}
+
+.shadow2 {
+  text-shadow:1px 1px #000000, 
+              2px 2px #000000, 
+              3px 3px #000000;
+   -webkit-transition: all 0.12s ease-out;
+   -moz-transition:    all 0.12s ease-out;
+   -ms-transition:     all 0.12s ease-out;
+   -o-transition:      all 0.12s ease-out;
 }
 
 .image-container {
@@ -135,20 +155,20 @@ table.center {
 
  /* WebKit and Opera browsers */
  @-webkit-keyframes spinner {
-  from { -webkit-transform: rotateY(0deg);    }
-  to   { -webkit-transform: rotateY(-360deg); }
+  from { -webkit-transform: rotateY(90deg);    }
+  to   { -webkit-transform: rotateY(-270deg); }
 }
 
 /* all other browsers */
 @keyframes spinner {
   from {
-    -moz-transform: rotateY(0deg);
-    -ms-transform: rotateY(0deg);
-    transform: rotateY(0deg);
+    -moz-transform: rotateY(90deg);
+    -ms-transform: rotateY(90deg);
+    transform: rotateY(90deg);
   }
   to {
-    -moz-transform: rotateY(-360deg);
-    -ms-transform: rotateY(-360deg);
-    transform: rotateY(-360deg);
+    -moz-transform: rotateY(-270deg);
+    -ms-transform: rotateY(-270deg);
+    transform: rotateY(-270deg);
   }
 }
