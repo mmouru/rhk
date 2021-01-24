@@ -24,8 +24,6 @@ function App() {
   kuvat[1] = serebryanka1
   kuvat[2] = serebryanka2
 
-  console.log(kuvat)
-
   const [kuva, setKuva] = useState(serebryanka)
 
   const [seconds, setSeconds] = useState(1);
@@ -36,8 +34,6 @@ function App() {
     const fetchData = async () => {
       const response = await axios.get("https://aq2rhk.herokuapp.com")
       setMatches(response.data)
-      console.log(response.data)
-      
     }
     fetchData();
   }, []);
@@ -102,7 +98,8 @@ function App() {
   }
 
  const kuvaKaruselli = (seconds) => {
-   return kuvat[Math.floor(Math.random() * 3)]
+   const numero = Math.floor(Math.random() * 3)
+   return kuvat[numero]
  }
   
   return (
