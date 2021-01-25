@@ -101,7 +101,7 @@ function App() {
   }
 
  const kuvaKaruselli = (seconds) => {
-   const numero = Math.floor(Math.random() * 3)
+   const numero = Math.floor(Math.random() * 4)
    return kuvat[numero]
  }
   
