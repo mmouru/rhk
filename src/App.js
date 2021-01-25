@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import './App.css';
+import './App.scss';
 import axios from 'axios'
 import  Container  from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { Table } from 'react-bootstrap' 
 import rhk from './rhk1.png'
+import rhk2 from './rhk3.png'
 import members from './members.gif'
 import hof from './hof.gif'
 import serebryanka from './sere0.png'
 import serebryanka1 from './sere1.png'
 import serebryanka2 from './sere3.png'
+import serebryanka3 from './rhk4.png'
 
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
   kuvat[0] = serebryanka
   kuvat[1] = serebryanka1
   kuvat[2] = serebryanka2
+  kuvat[3] = serebryanka3
 
   const [kuva, setKuva] = useState(serebryanka)
 
@@ -104,12 +107,13 @@ function App() {
   
   return (
     <div style={{backgroundColor : "black"}}>
+      
     <Container fluid className="kuvakki">
       <Row style={{paddingTop: 20, paddingBottom: 20}}>
        <Col style={{marginLeft: 300, textAlign: "center", paddingRight: 0}}>
-       <p className="html-rainbow-text">
-       <h1 className="rainbow">clanwars: {matches.length}</h1>
-       </p>
+
+          <h1 style={{color: "white"}}>Clanwars - {matches.length}</h1>
+       
        <p style={{color: "white"}}>
          total rounds <span style={{color: "green"}}>{totalWins()}</span> - <span style={{color: "red"}}>{totalLoses()}</span>
        </p>
@@ -153,7 +157,7 @@ function App() {
               </tbody>
           </Table>
        </Col>
-       <Col style={{textAlign: "center", marginRight: 300}}><div><a href="https://discord.gg/vPxH6rHU"><img src={rhk}></img></a></div>
+       <Col style={{textAlign: "center", marginRight: 300}}><div><a href="https://discord.gg/vPxH6rHU"><img src={rhk2}></img></a></div>
        <div id="picturediv">
          <div className="image-container" style={{marginTop: 30}}>
           <img src={members}/>
@@ -175,7 +179,12 @@ function App() {
            <table id="pelaajattable" style={{width: "100%", marginTop: 30, color: "white"}}>
              <tr style={{textAlign: "center", verticalAlign: "middle", width: "100%", marginTop: "10px"}}>
                <td className="shadow2">
-                 {"janneP"}
+                 janneP
+               </td>
+             </tr>
+             <tr>
+             <td className="shadow2">
+                 Punisher
                </td>
              </tr>
            </table>
